@@ -12,11 +12,11 @@ const Search = () => {
   const handleChange = (event) => {
     const { name, value } = event.target;
     setValues((presvState) => ({ ...presvState, [name]: value }));
+    runSearch(value);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // console.log(values.term):
     runSearch(values.term);
   };
 
@@ -28,10 +28,10 @@ const Search = () => {
       })
       .catch((error) => {
         console.log('Error', error);
-      })
-      .finally(() => {
-        setValues(INITIAL_STATE);
       });
+    // .finally(() => {
+    //   setValues(INITIAL_STATE);
+    // });
   };
 
   return (
@@ -44,6 +44,7 @@ const Search = () => {
           className='search-input'
           placeholder='Search..'
           value={values.term}
+          autoComplete='off'
         />
       </form>
       {responseData.drinks &&
